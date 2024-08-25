@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+}
+
+.details-TopBlock, .details-BottomBlock {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 1px 5px 5px 4px rgba(15, 27, 36, 0.2);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.details-TopBlock {
+    min-height: 200px; /* Меньшая высота для верхних блоков */
+    overflow: visible;
+}
+
+.details-BottomBlock {
+    min-height: 300px; /* Большая высота для нижних блоков */
+}
+
+.details-TopBlock h1, .details-BottomBlock h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.input-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input-container {
+    position: relative;
+    flex: 1;
+}
+
+.input-container input, .input-container select, .input-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+}
+
+.input-container i.icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 16px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .details-TopBlock, .details-BottomBlock {
+        max-width: 100%;
+        margin-bottom: 20px;
+        padding: 10px; 
+    }
+
+    .grid-container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .input-container input, .input-container select, .input-container textarea {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .details-TopBlock h1, .details-BottomBlock h1 {
+        font-size: 18px;
+    }
+
+    .grid-container {
+        padding: 0; 
+        grid-template-columns: 1fr;
+    }
+
+    .details-TopBlock, .details-BottomBlock {
+        width: 100%;
+        max-width: 100%;
+    }
+}

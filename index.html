@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <title>Pipedrive</title>
+  </head>
+  <body>
+    <form id="dealForm">
+      <div class="grid-container">
+        <!--Client Details-->
+        <div class="details-TopBlock">
+          <h1>Client Details</h1>
+
+          <div class="input-row">
+            <div class="input-container">
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                required
+              />
+            </div>
+
+            <div class="input-container">
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="input-container">
+            <input type="tel" name="phone" placeholder="Phone" required />
+            <i class="fas fa-phone-alt icon"></i>
+          </div>
+
+          <div class="input-container">
+            <input type="email" name="email" placeholder="Email (optional)" />
+            <i class="fas fa-envelope icon"></i>
+          </div>
+        </div>
+
+        <!-- Job details block -->
+        <div class="details-TopBlock">
+          <h1>Job details</h1>
+          <div class="input-container">
+            <select name="jobType" required>
+              <option value="" disabled selected>Job type</option>
+              <option value="full-time">Full-time</option>
+              <option value="part-time">Part-time</option>
+            </select>
+            <i class="fas fa-briefcase icon"></i>
+          </div>
+          <div class="input-container">
+            <select name="jobSource" required>
+              <option value="" disabled selected>Job source</option>
+              <option value="online">Online</option>
+              <option value="referral">Referral</option>
+            </select>
+            <i class="fas fa-external-link-alt icon"></i>
+          </div>
+          <div class="input-container">
+            <textarea
+              name="jobDescription"
+              placeholder="Job description (optional)"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Service location block -->
+        <div class="details-BottomBlock">
+          <h1>Service location</h1>
+          <div class="input-container">
+            <input type="text" name="address" placeholder="Address" required />
+            <i class="fas fa-map-marker-alt icon"></i>
+          </div>
+          <div class="input-container">
+            <input type="text" name="city" placeholder="City" required />
+            <i class="fas fa-city icon"></i>
+          </div>
+          <div class="input-container">
+            <input type="text" name="state" placeholder="State" required />
+            <i class="fas fa-flag icon"></i>
+          </div>
+          <div class="input-container">
+            <input type="text" name="zipCode" placeholder="Zip code" required />
+            <i class="fas fa-mail-bulk icon"></i>
+          </div>
+          <div class="input-container">
+            <select name="area" required>
+              <option value="" disabled selected>Area</option>
+              <option value="urban">Urban</option>
+              <option value="suburban">Suburban</option>
+              <option value="rural">Rural</option>
+            </select>
+            <i class="fas fa-map icon"></i>
+          </div>
+        </div>
+
+        <!-- Scheduled block -->
+        <div class="details-BottomBlock">
+          <h1>Scheduled</h1>
+          <div class="input-container">
+            <input
+              type="date"
+              name="startDate"
+              placeholder="Start date"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <input
+              type="time"
+              name="startTime"
+              placeholder="Start time"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <input type="time" name="endTime" placeholder="End time" required />
+          </div>
+          <div class="input-container">
+            <select name="testSelect" required>
+              <option value="" disabled selected>Test select</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      $(function () {
+        $("#dealForm").on("submit", function (event) {
+          event.preventDefault();
+
+          const formData = $(this).serialize();
+
+          $.ajax({
+            url: "/api/create-deal",
+            method: "POST",
+            data: formData,
+            success: function (response) {
+              alert("Deal created successfully");
+            },
+            error: function (error) {
+              console.error("Error creating deal:", error);
+              alert("Failed to create deal");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
